@@ -20,7 +20,9 @@
                 "./node_modules/tns-core-modules/*",
                 "./node_modules/*"
             ]
-        }
+        },
+        "importHelpers": true,
+        "moduleResolution": "node"
     },
     "exclude": [
         "node_modules",

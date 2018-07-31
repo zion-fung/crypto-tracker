@@ -1,0 +1,38 @@
+[
+    {
+        "merged": "C:\\Users\\Zion\\Documents\\github\\crypto-tracker\\platforms\\tempPlugin\\nativescript_bottom_navigation\\build\\intermediates\\res\\merged\\release\\drawable-v21\\avd_show_password.xml",
+        "source": "C:\\Users\\Zion\\.gradle\\caches\\transforms-1\\files-1.1\\design-25.3.1.aar\\9ce20015851da2cd5ee0d694ef212c96\\res\\drawable-v21\\avd_show_password.xml"
+    },
+    {
+        "merged": "C:\\Users\\Zion\\Documents\\github\\crypto-tracker\\platforms\\tempPlugin\\nativescript_bottom_navigation\\build\\intermediates\\res\\merged\\release\\drawable-v21\\notification_action_background.xml",
+        "source": "C:\\Users\\Zion\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.3.1.aar\\db69883d70ec21d8a2a1e281493bf932\\res\\drawable-v21\\notification_action_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\Zion\\Documents\\github\\crypto-tracker\\platforms\\tempPlugin\\nativescript_bottom_navigation\\build\\intermediates\\res\\merged\\release\\drawable-v21\\design_bottom_navigation_item_background.xml",
+        "source": "C:\\Users\\Zion\\.gradle\\caches\\transforms-1\\files-1.1\\design-25.3.1.aar\\9ce20015851da2cd5ee0d694ef212c96\\res\\drawable-v21\\design_bottom_navigation_item_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\Zion\\Documents\\github\\crypto-tracker\\platforms\\tempPlugin\\nativescript_bottom_navigation\\build\\intermediates\\res\\merged\\release\\drawable-v21\\abc_action_bar_item_background_material.xml",
+        "source": "C:\\Users\\Zion\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.3.1.aar\\db69883d70ec21d8a2a1e281493bf932\\res\\drawable-v21\\abc_action_bar_item_background_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\Zion\\Documents\\github\\crypto-tracker\\platforms\\tempPlugin\\nativescript_bottom_navigation\\build\\intermediates\\res\\merged\\release\\drawable-v21\\abc_edit_text_material.xml",
+        "source": "C:\\Users\\Zion\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.3.1.aar\\db69883d70ec21d8a2a1e281493bf932\\res\\drawable-v21\\abc_edit_text_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\Zion\\Documents\\github\\crypto-tracker\\platforms\\tempPlugin\\nativescript_bottom_navigation\\build\\intermediates\\res\\merged\\release\\drawable-v21\\item_background.xml",
+        "source": "C:\\Users\\Zion\\.gradle\\caches\\transforms-1\\files-1.1\\ahbottomnavigation-2.1.0.aar\\c6db2e6789c90d4e0225775e4266df0f\\res\\drawable-v21\\item_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\Zion\\Documents\\github\\crypto-tracker\\platforms\\tempPlugin\\nativescript_bottom_navigation\\build\\intermediates\\res\\merged\\release\\drawable-v21\\abc_btn_colored_material.xml",
+        "source": "C:\\Users\\Zion\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.3.1.aar\\db69883d70ec21d8a2a1e281493bf932\\res\\drawable-v21\\abc_btn_colored_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\Zion\\Documents\\github\\crypto-tracker\\platforms\\tempPlugin\\nativescript_bottom_navigation\\build\\intermediates\\res\\merged\\release\\drawable-v21\\design_password_eye.xml",
+        "source": "C:\\Users\\Zion\\.gradle\\caches\\transforms-1\\files-1.1\\design-25.3.1.aar\\9ce20015851da2cd5ee0d694ef212c96\\res\\drawable-v21\\design_password_eye.xml"
+    },
+    {
+        "merged": "C:\\Users\\Zion\\Documents\\github\\crypto-tracker\\platforms\\tempPlugin\\nativescript_bottom_navigation\\build\\intermediates\\res\\merged\\release\\drawable-v21\\avd_hide_password.xml",
+        "source": "C:\\Users\\Zion\\.gradle\\caches\\transforms-1\\files-1.1\\design-25.3.1.aar\\9ce20015851da2cd5ee0d694ef212c96\\res\\drawable-v21\\avd_hide_password.xml"
+    }
+]
