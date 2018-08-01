@@ -1,0 +1,9 @@
+<StackLayout margin="24" horizontalAlignment="center" verticalAlignment="center">
+    <!-- <TextField id="amountOwned" hint="Amount Owned" (textChange)="update($event.object)" keyboardType="number" secure="false" returnKeyType="done" maxLength="10"></TextField>
+    <TextField id="amountOwned" hint="Amount Owned" (textChange)="update($event.object)" keyboardType="number" secure="false" returnKeyType="done" maxLength="10"></TextField> -->
+    <TextField *ngFor="let head of headers" [id]="head.id" [hint]="head.hint" (textChange)="update($event.object)" [keyboardType]="head.keyboardType" secure="false" returnKeyType="done"></TextField>
+    <StackLayout orientation="horizontal" marginTop="12">
+        <Button text="Add" (tap)="add()"></Button>
+        <Button text="cancel" (tap)="close()"></Button>
+    </StackLayout>
+</StackLayout>
