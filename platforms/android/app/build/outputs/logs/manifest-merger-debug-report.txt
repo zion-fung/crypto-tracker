@@ -13,6 +13,7 @@ MERGED from [com.android.support:transition:26.0.0-alpha1] C:\Users\Zion\.gradle
 MERGED from [com.android.support:support-v4:26.0.0-alpha1] C:\Users\Zion\.gradle\caches\transforms-1\files-1.1\support-v4-26.0.0-alpha1.aar\ad08d932b6d495ed1e87aface4bb5879\AndroidManifest.xml:17:1-31:12
 MERGED from [:nativescript-optimized-with-inspector:] C:\Users\Zion\.gradle\caches\transforms-1\files-1.1\nativescript-optimized-with-inspector.aar\ed37c11d1d7619f4d98dd52a7bd4c774\AndroidManifest.xml:2:1-11:12
 MERGED from [:nativescript_bottom_navigation:] C:\Users\Zion\.gradle\caches\transforms-1\files-1.1\nativescript_bottom_navigation.aar\d8246bfa7cd9260d12cc042c16d54c2d\AndroidManifest.xml:2:1-9:12
+MERGED from [:nativescript_modal_datetimepicker:] C:\Users\Zion\.gradle\caches\transforms-1\files-1.1\nativescript_modal_datetimepicker.aar\ec899bb7b6ae90feb4ab27507181a905\AndroidManifest.xml:2:1-9:12
 MERGED from [:TNSListView-release:] C:\Users\Zion\.gradle\caches\transforms-1\files-1.1\TNSListView-release.aar\429789a15ce4f66c183b0ede842480e8\AndroidManifest.xml:2:1-11:12
 MERGED from [:TNSCore-release:] C:\Users\Zion\.gradle\caches\transforms-1\files-1.1\TNSCore-release.aar\e12f0b4fce2e6a61bf5b72eb12052f7c\AndroidManifest.xml:2:1-11:12
 MERGED from [:widgets-release:] C:\Users\Zion\.gradle\caches\transforms-1\files-1.1\widgets-release.aar\7484f890212a367c84b0ab16a9f364bd\AndroidManifest.xml:2:1-14:12
@@ -72,6 +73,8 @@ MERGED from [:nativescript-optimized-with-inspector:] C:\Users\Zion\.gradle\cach
 MERGED from [:nativescript-optimized-with-inspector:] C:\Users\Zion\.gradle\caches\transforms-1\files-1.1\nativescript-optimized-with-inspector.aar\ed37c11d1d7619f4d98dd52a7bd4c774\AndroidManifest.xml:7:5-9:41
 MERGED from [:nativescript_bottom_navigation:] C:\Users\Zion\.gradle\caches\transforms-1\files-1.1\nativescript_bottom_navigation.aar\d8246bfa7cd9260d12cc042c16d54c2d\AndroidManifest.xml:7:5-47
 MERGED from [:nativescript_bottom_navigation:] C:\Users\Zion\.gradle\caches\transforms-1\files-1.1\nativescript_bottom_navigation.aar\d8246bfa7cd9260d12cc042c16d54c2d\AndroidManifest.xml:7:5-47
+MERGED from [:nativescript_modal_datetimepicker:] C:\Users\Zion\.gradle\caches\transforms-1\files-1.1\nativescript_modal_datetimepicker.aar\ec899bb7b6ae90feb4ab27507181a905\AndroidManifest.xml:7:5-47
+MERGED from [:nativescript_modal_datetimepicker:] C:\Users\Zion\.gradle\caches\transforms-1\files-1.1\nativescript_modal_datetimepicker.aar\ec899bb7b6ae90feb4ab27507181a905\AndroidManifest.xml:7:5-47
 MERGED from [:TNSListView-release:] C:\Users\Zion\.gradle\caches\transforms-1\files-1.1\TNSListView-release.aar\429789a15ce4f66c183b0ede842480e8\AndroidManifest.xml:7:5-9:41
 MERGED from [:TNSListView-release:] C:\Users\Zion\.gradle\caches\transforms-1\files-1.1\TNSListView-release.aar\429789a15ce4f66c183b0ede842480e8\AndroidManifest.xml:7:5-9:41
 MERGED from [:TNSCore-release:] C:\Users\Zion\.gradle\caches\transforms-1\files-1.1\TNSCore-release.aar\e12f0b4fce2e6a61bf5b72eb12052f7c\AndroidManifest.xml:7:5-9:41
@@ -103,6 +106,7 @@ INJECTED from C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\ap
 	android:minSdkVersion
 		ADDED from C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\src\main\AndroidManifest.xml:14:3-29
 		INJECTED from C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\src\main\AndroidManifest.xml
+		MERGED from C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\src\main\AndroidManifest.xml:14:3-29
 		MERGED from C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\src\main\AndroidManifest.xml:14:3-29
 		INJECTED from C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\src\main\AndroidManifest.xml
 uses-permission#android.permission.READ_EXTERNAL_STORAGE

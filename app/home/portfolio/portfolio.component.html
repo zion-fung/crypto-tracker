@@ -1,5 +1,16 @@
 <StackLayout>
-  <Label class="h1 title"
-    text="portfolio Is working"></Label>
-    <button text="Show Modal" (tap)="newPortfolioEntry()"></button>
+    <GridLayout rows="auto" columns="*, *, *" width="100%">
+        <button row="0" col="0" text="Open Graphs"></button>
+        <StackLayout row="0" col="1" horizontalAlignment="center" verticalAlignment="center">
+            <Label style="text-align: center" text="Profit"></Label>
+            <Label style="text-align: center" text="24h: 10%"></Label>
+            <Label style="text-align: center" text="7d: -10.5"></Label>
+        </StackLayout>
+        <button row="0" col="2" text="Show Modal" (tap)="newPortfolioEntry()"></button>
+    </GridLayout>
+    <StackLayout orientation="horizontal" width="100%" backgroundColor="lightblue">
+        <Label width="33%" style="text-align: center" text="Total value: $2000"></Label>
+        <Label width="33%" style="text-align: center" text="Total spent: $1200"></Label>
+        <Label width="33%" style="text-align: center" text="Coins: 15"></Label>
+    </StackLayout>
 </StackLayout>

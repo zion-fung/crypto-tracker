@@ -8,6 +8,10 @@
         "directory": "..\\..\\node_modules\\nativescript-bottom-navigation"
     },
     {
+        "name": "nativescript-modal-datetimepicker",
+        "directory": "..\\..\\node_modules\\nativescript-modal-datetimepicker"
+    },
+    {
         "name": "nativescript-theme-core",
         "directory": "..\\..\\node_modules\\nativescript-theme-core"
     },

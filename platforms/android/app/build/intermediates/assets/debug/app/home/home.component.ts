@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { jsonlib } from "./jsonlib"
+import { Page, isAndroid } from "ui/page";
+import { SearchBar } from "ui/search-bar";
 
 @Component({
     selector: "Home",
@@ -7,13 +9,17 @@ import { jsonlib } from "./jsonlib"
     templateUrl: "./home.component.html"
 })
 export class HomeComponent implements OnInit {
+    constructor(private page: Page) {
+        page.actionBarHidden = true;
+    }
 	desiredKeys = {
 		"Rank": "rank",
 		"Name": "name",
         "Symbol": "symbol",
 		"Price": "quotes.USD.price",
         "Marketcap": "quotes.USD.market_cap",
-		"%_change_24h": "quotes.USD.percent_change_24h"
+        "%_change_24h": "quotes.USD.percent_change_24h",
+        "%_change_7d": "quotes.USD.percent_change_7d"
 	}
 	headers = [];
     url = "https://api.coinmarketcap.com/v2/ticker/?structure=array";
@@ -56,19 +62,34 @@ export class HomeComponent implements OnInit {
                 if(isNaN(valueNumber)) {
                     newData[key] = value;
                 } else {
-                    newData[key] = valueNumber.toLocaleString();
+                    // If value number is a float, reduce it to 2 decimal places
+                    if(valueNumber % 1 != 0) {
+                        newData[key] = valueNumber.toFixed(2);
+                    } else {
+                        newData[key] = valueNumber.toFixed(0);
+                    }
+                    // Otherwise store it
                 }
             }
             storage.push(newData);
         }
     }
-    async ngOnInit() {
-    	await this.getData(this.url, this.data, 1, 30);
+    ngOnInit() {
+        this.getData(this.url, this.data, 1, 30);
         this.headers = jsonlib.getKeys(this.desiredKeys);
+        console.log("Hello world!");
     }
     // Given two json objects, returns a comparison of their rank value
     rankCompare(a, b) {
         return a.rank - b.rank;
     }
-
+    onTap(args) {
+        console.log("Tap!");
+        console.log(args);
+    }
+    clearFocus(search) {
+        if(isAndroid) {
+            search.android.clearFocus();
+        }
+    }
 }

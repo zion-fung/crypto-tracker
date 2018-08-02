@@ -1,0 +1,10 @@
+<StackLayout margin="24" horizontalAlignment="center" verticalAlignment="center">
+    <TextField id="name" hint="Name" (textChange)="update($event.object)" secure="false" returnKeyType="done"></TextField>
+    <TextField id="amountOwned" hint="Amount Owned" (textChange)="update($event.object)" keyboardType="number" secure="false" returnKeyType="done"></TextField>
+    <TextField id="purchasedPrice" hint="Purchased Price" (textChange)="update($event.object)" keyboardType="number" secure="false" returnKeyType="done"></TextField>
+    
+    <StackLayout orientation="horizontal" marginTop="12">
+        <Button text="cancel" (tap)="close()"></Button>
+        <Button text="Add" (tap)="add()"></Button>
+    </StackLayout>
+</StackLayout>

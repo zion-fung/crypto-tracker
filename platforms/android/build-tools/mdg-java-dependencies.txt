@@ -10,8 +10,9 @@ C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\build\explod
 C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\build\exploded-dependencies\16\classes.jar
 C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\build\exploded-dependencies\17\classes.jar
 C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\build\exploded-dependencies\18\classes.jar
-C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\build\exploded-dependencies\19\support-annotations-26.0.0-alpha1.jar
+C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\build\exploded-dependencies\19\classes.jar
 C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\build\exploded-dependencies\2\classes.jar
+C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\build\exploded-dependencies\20\support-annotations-26.0.0-alpha1.jar
 C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\build\exploded-dependencies\3\classes.jar
 C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\build\exploded-dependencies\4\classes.jar
 C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\build\exploded-dependencies\5\classes.jar
@@ -19,3 +20,4 @@ C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\build\explod
 C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\build\exploded-dependencies\7\classes.jar
 C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\build\exploded-dependencies\8\classes.jar
 C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\build\exploded-dependencies\9\classes.jar
+C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\build\intermediates\classes\debug

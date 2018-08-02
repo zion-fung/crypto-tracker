@@ -5,6 +5,10 @@ C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\src\main\ass
 C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\src\main\assets\app\home\home.component.js
 C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\src\main\assets\app\home\home.module.js
 C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\src\main\assets\app\home\jsonlib.js
+C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\src\main\assets\app\home\portfolio\dialog-content.component.js
+C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\src\main\assets\app\home\portfolio\portfolio.component.js
+C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\src\main\assets\app\home\portfolio\portfolio.js
+C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\src\main\assets\app\home\portfolio\timeLib.js
 C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\src\main\assets\app\main.aot.js
 C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\src\main\assets\app\main.js
 C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\src\main\assets\app\tns_modules\nativescript-angular\animations\animation-driver.js
@@ -87,6 +91,7 @@ C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\src\main\ass
 C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\src\main\assets\app\tns_modules\nativescript-intl\index.js
 C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\src\main\assets\app\tns_modules\nativescript-intl\nativescript-intl-common.js
 C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\src\main\assets\app\tns_modules\nativescript-intl\nativescript-intl.js
+C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\src\main\assets\app\tns_modules\nativescript-modal-datetimepicker\modal-datetimepicker.js
 C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\src\main\assets\app\tns_modules\nativescript-ui-listview\hooks\before-livesync\nativescript-angular-sync.js
 C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\src\main\assets\app\tns_modules\nativescript-ui-listview\ui-listview.common.js
 C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\src\main\assets\app\tns_modules\nativescript-ui-listview\ui-listview.js

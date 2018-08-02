@@ -4,6 +4,7 @@ import { NativeScriptCommonModule } from "nativescript-angular/common";
 import { HomeRoutingModule } from "./home-routing.module";
 import { HomeComponent } from "./home.component";
 import { NativescriptBottomNavigationModule} from "nativescript-bottom-navigation/angular";
+import { PortfolioComponent } from "./portfolio/portfolio.component";
 
 @NgModule({
     imports: [
@@ -12,7 +13,8 @@ import { NativescriptBottomNavigationModule} from "nativescript-bottom-navigatio
         NativescriptBottomNavigationModule
     ],
     declarations: [
-        HomeComponent
+        HomeComponent,
+        PortfolioComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA

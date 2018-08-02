@@ -1,0 +1,31 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\Zion\Documents\github\crypto-tracker\platforms\tempPlugin\nativescript_modal_datetimepicker\src\main\AndroidManifest.xml:2:1-132
+INJECTED from C:\Users\Zion\Documents\github\crypto-tracker\platforms\tempPlugin\nativescript_modal_datetimepicker\src\main\AndroidManifest.xml:2:1-132
+INJECTED from C:\Users\Zion\Documents\github\crypto-tracker\platforms\tempPlugin\nativescript_modal_datetimepicker\src\main\AndroidManifest.xml:2:1-132
+INJECTED from C:\Users\Zion\Documents\github\crypto-tracker\platforms\tempPlugin\nativescript_modal_datetimepicker\src\main\AndroidManifest.xml:2:1-132
+INJECTED from C:\Users\Zion\Documents\github\crypto-tracker\platforms\tempPlugin\nativescript_modal_datetimepicker\src\main\AndroidManifest.xml:2:1-132
+INJECTED from C:\Users\Zion\Documents\github\crypto-tracker\platforms\tempPlugin\nativescript_modal_datetimepicker\src\main\AndroidManifest.xml:2:1-132
+INJECTED from C:\Users\Zion\Documents\github\crypto-tracker\platforms\tempPlugin\nativescript_modal_datetimepicker\src\main\AndroidManifest.xml:2:1-132
+	package
+		ADDED from C:\Users\Zion\Documents\github\crypto-tracker\platforms\tempPlugin\nativescript_modal_datetimepicker\src\main\AndroidManifest.xml:2:70-130
+		INJECTED from C:\Users\Zion\Documents\github\crypto-tracker\platforms\tempPlugin\nativescript_modal_datetimepicker\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Zion\Documents\github\crypto-tracker\platforms\tempPlugin\nativescript_modal_datetimepicker\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\Zion\Documents\github\crypto-tracker\platforms\tempPlugin\nativescript_modal_datetimepicker\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Zion\Documents\github\crypto-tracker\platforms\tempPlugin\nativescript_modal_datetimepicker\src\main\AndroidManifest.xml:2:1-132
+		INJECTED from C:\Users\Zion\Documents\github\crypto-tracker\platforms\tempPlugin\nativescript_modal_datetimepicker\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from C:\Users\Zion\Documents\github\crypto-tracker\platforms\tempPlugin\nativescript_modal_datetimepicker\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Zion\Documents\github\crypto-tracker\platforms\tempPlugin\nativescript_modal_datetimepicker\src\main\AndroidManifest.xml:2:1-132
+		INJECTED from C:\Users\Zion\Documents\github\crypto-tracker\platforms\tempPlugin\nativescript_modal_datetimepicker\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\Zion\Documents\github\crypto-tracker\platforms\tempPlugin\nativescript_modal_datetimepicker\src\main\AndroidManifest.xml:2:11-69
+uses-sdk
+INJECTED from C:\Users\Zion\Documents\github\crypto-tracker\platforms\tempPlugin\nativescript_modal_datetimepicker\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\Zion\Documents\github\crypto-tracker\platforms\tempPlugin\nativescript_modal_datetimepicker\src\main\AndroidManifest.xml
+INJECTED from C:\Users\Zion\Documents\github\crypto-tracker\platforms\tempPlugin\nativescript_modal_datetimepicker\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from C:\Users\Zion\Documents\github\crypto-tracker\platforms\tempPlugin\nativescript_modal_datetimepicker\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Zion\Documents\github\crypto-tracker\platforms\tempPlugin\nativescript_modal_datetimepicker\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Zion\Documents\github\crypto-tracker\platforms\tempPlugin\nativescript_modal_datetimepicker\src\main\AndroidManifest.xml

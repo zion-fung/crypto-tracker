@@ -5,6 +5,7 @@ import { ModalDialogService } from "nativescript-angular/modal-dialog";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { DialogContent } from "./home/portfolio/dialog-content.component";
+import { ModalDatetimepicker } from "nativescript-modal-datetimepicker";
 
 @NgModule({
     bootstrap: [
@@ -24,6 +25,9 @@ import { DialogContent } from "./home/portfolio/dialog-content.component";
     schemas: [
         NO_ERRORS_SCHEMA
     ],
-    providers: [ModalDialogService]
+    providers: [
+        ModalDialogService, 
+        ModalDatetimepicker
+    ]
 })
 export class AppModule { }

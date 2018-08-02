@@ -10,6 +10,7 @@
     "@angular/router": true,
     "nativescript-angular": true,
     "nativescript-bottom-navigation": true,
+    "nativescript-modal-datetimepicker": true,
     "nativescript-theme-core": true,
     "nativescript-ui-listview": true,
     "reflect-metadata": true,

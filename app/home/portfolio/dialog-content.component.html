@@ -1,9 +1,11 @@
 <StackLayout margin="24" horizontalAlignment="center" verticalAlignment="center">
-    <!-- <TextField id="amountOwned" hint="Amount Owned" (textChange)="update($event.object)" keyboardType="number" secure="false" returnKeyType="done" maxLength="10"></TextField>
-    <TextField id="amountOwned" hint="Amount Owned" (textChange)="update($event.object)" keyboardType="number" secure="false" returnKeyType="done" maxLength="10"></TextField> -->
-    <TextField *ngFor="let head of headers" [id]="head.id" [hint]="head.hint" (textChange)="update($event.object)" [keyboardType]="head.keyboardType" secure="false" returnKeyType="done"></TextField>
+    <TextField id="name" hint="Name" (textChange)="update($event.object)" secure="false" returnKeyType="done"></TextField>
+    <TextField id="amountOwned" hint="Amount Owned" (textChange)="update($event.object)" keyboardType="number" secure="false" returnKeyType="done"></TextField>
+    <TextField id="purchasedPrice" hint="Purchased Price" (textChange)="update($event.object)" keyboardType="number" secure="false" returnKeyType="done"></TextField>
+    <TextField id="datePurchased" hint="Date Purchased" [text]="results['datePurchased']" (textChange)="update($event.object)" keyboardType="datetime" secure="false" returnKeyType="done"></TextField>
+    <Button (tap)="showDateTimePicker()" text="Select Date"></Button>
     <StackLayout orientation="horizontal" marginTop="12">
-        <Button text="Add" (tap)="add()"></Button>
         <Button text="cancel" (tap)="close()"></Button>
+        <Button text="Add" (tap)="add()"></Button>
     </StackLayout>
 </StackLayout>
