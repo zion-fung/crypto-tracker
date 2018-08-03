@@ -13,14 +13,17 @@ import { jsonlib } from "../jsonlib";
 })
 export class PortfolioComponent implements OnInit {
     portfolio: Portfolio;
+    entries;
     constructor(private modalService: ModalDialogService, private viewContainerRef: ViewContainerRef) {}
 	ngOnInit() {
         this.portfolio = new Portfolio();
+        this.entries = this.portfolio.getEntries();
     }
     async newPortfolioEntry() {
         let options: ModalDialogOptions = {
             viewContainerRef: this.viewContainerRef
         };
+        console.log("Opening dialog");
         let result = await this.modalService.showModal(DialogContent, options);
         console.log(result);
         // User added new entry to portfolio
@@ -29,6 +32,7 @@ export class PortfolioComponent implements OnInit {
             this.portfolio.addEntry(NameMapper.getId(result.name), result.name, price, result.amountOwned, result.purchasedPrice, result.datePurchased);
         }
         console.log(this.portfolio);
+        this.entries = this.portfolio.getEntries();
     }
     // Given the name of a coin return its price
     async getPrice(name: string) {

@@ -3,7 +3,7 @@ import { ModalDialogParams } from "nativescript-angular/modal-dialog";
 import { TextField } from "ui/text-field";
 import { ModalDatetimepicker, PickerOptions, PickerResponse } from "nativescript-modal-datetimepicker";
 import { alert } from "ui/dialogs";
-import { start } from 'tns-core-modules/application/application';
+import { NameMapper } from "../name-mapper";
 
 @Component({
     selector: "modal-content",
@@ -38,6 +38,10 @@ export class DialogContent {
         }
         if(!this.verifyFields()) {
             alert("All fields must be filled out");
+            return;
+        }
+        if(!this.verifyCoin(this.results["name"])) {
+            alert("Coin does not exist");
             return;
         }
         this.params.closeCallback(this.results);
@@ -97,5 +101,12 @@ export class DialogContent {
             }
         }
         return true;
+    }
+    // Verifies that the coin inputed by the user actually exists
+    private verifyCoin(name: string):boolean {
+        if(NameMapper.getId(name)) {
+            return true;
+        }
+        return false;
     }
 }
