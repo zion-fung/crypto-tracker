@@ -6,6 +6,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { DialogContent } from "./home/portfolio/dialog-content.component";
 import { ModalDatetimepicker } from "nativescript-modal-datetimepicker";
+import { CoinInfo } from "./home/coin-info/coin-info.component";
 
 @NgModule({
     bootstrap: [
@@ -17,10 +18,12 @@ import { ModalDatetimepicker } from "nativescript-modal-datetimepicker";
     ],
     declarations: [
         AppComponent,
-        DialogContent
+        DialogContent,
+        CoinInfo
     ],
     entryComponents: [
-        DialogContent
+        DialogContent,
+        CoinInfo
     ],
     schemas: [
         NO_ERRORS_SCHEMA

@@ -20,4 +20,3 @@ C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\build\explod
 C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\build\exploded-dependencies\7\classes.jar
 C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\build\exploded-dependencies\8\classes.jar
 C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\build\exploded-dependencies\9\classes.jar
-C:\Users\Zion\Documents\github\crypto-tracker\platforms\android\app\build\intermediates\classes\debug

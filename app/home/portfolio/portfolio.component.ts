@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Portfolio } from "./portfolio";
 import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/modal-dialog";
-import { DialogContent } from "./dialog-content.component";
+import { PortfolioInput } from "./portfolio-input/portfolio-input.component";
 import { NameMapper } from "../name-mapper";
 import { jsonlib } from "../jsonlib";
 
@@ -24,7 +24,7 @@ export class PortfolioComponent implements OnInit {
             viewContainerRef: this.viewContainerRef
         };
         console.log("Opening dialog");
-        let result = await this.modalService.showModal(DialogContent, options);
+        let result = await this.modalService.showModal(PortfolioInput, options);
         console.log(result);
         // User added new entry to portfolio
         if(JSON.stringify(result) != "{}") {

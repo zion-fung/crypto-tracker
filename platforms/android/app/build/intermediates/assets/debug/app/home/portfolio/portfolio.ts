@@ -1,22 +1,33 @@
-import { TimeLib } from "./TimeLib";
+import { TimeLib } from "./timeLib";
 
 export class Portfolio {
-    private entries:object = {};
+    private entries = [];
     constructor() {}
+    getEntry(id: string) {
+        for(var entry of this.entries) {
+            if(id == entry.id) {
+                return entry;
+            }
+        }
+        return undefined;
+    }
+    getEntries() {
+        return this.entries;
+    }
     addEntry(id, name, price, amountOwned, purchasedPrice, date):void {
-        this.entries[id] = new portfolioEntry(id, name, price, amountOwned, purchasedPrice, date);
+        this.entries.push(new portfolioEntry(id, name, price, amountOwned, purchasedPrice, date));
     }
     getTotalWorth():number {
         let sum = 0;
-        for(var key in this.entries) {
-            sum += (this.entries[key].price * this.entries[key].amountOwned);
+        for(var entry of this.entries) {
+            sum += (entry.price * entry.amountOwned);
         }
         return sum;
     }
     getTotalCost(): number {
         let sum = 0;
-        for(var key in this.entries) {
-            sum += (this.entries[key].purchasedPrice * this.entries[key].amountOwned);
+        for(var entry of this.entries) {
+            sum += (entry.purchasedPrice * entry.amountOwned);
         }
         return sum;
     }
@@ -27,13 +38,13 @@ export class Portfolio {
     	return this.getTotalProfit() / this.getTotalCost() * 100;
     }
     getEntryDateHuman(id: string) {
-    	return TimeLib.epochToHuman(this.entries[id].date);
+    	return TimeLib.epochToHuman(this.getEntry(id).date);
     }
     getEntryDateEpoch(id: string) {
-    	return this.entries[id].date;
+    	return this.getEntry(id).date;
     }
     getTimeSincePurchase(id: string, currentDate) {
-    	let purchaseDate = this.entries[id].date;
+    	let purchaseDate = this.getEntry(id).date;
     	// Check if currentdate is string or number. Number means epoch format, string means human format
     	if(isNaN(currentDate)) {
     		// Is a string, convert to epoch
@@ -58,13 +69,13 @@ class portfolioEntry {
     price: number;
     amountOwned: number;
     purchasedPrice: number;
-    date: number;
-    constructor(id, name, price, amountOwned, purchasedPrice, date) {
+    datePurchased: number;
+    constructor(id, name, price, amountOwned, purchasedPrice, datePurchased) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.amountOwned = amountOwned;
         this.purchasedPrice = purchasedPrice;
-        this.date = date;
+        this.datePurchased = datePurchased;
     }
 }

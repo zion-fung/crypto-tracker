@@ -9,6 +9,7 @@ import { NameMapper } from "../name-mapper";
     selector: "modal-content",
     templateUrl: "./home/portfolio/dialog-content.component.html"
 })
+// TODO: Remove human ability to enter date and add functionality of buttons and search bar
 export class DialogContent {
     public prompt: string;
     private incorrectDateString = "Date must be in format: DD/MM/YYYY and not in the future";

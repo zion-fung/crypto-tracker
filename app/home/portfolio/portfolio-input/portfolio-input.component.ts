@@ -3,13 +3,14 @@ import { ModalDialogParams } from "nativescript-angular/modal-dialog";
 import { TextField } from "ui/text-field";
 import { ModalDatetimepicker, PickerOptions, PickerResponse } from "nativescript-modal-datetimepicker";
 import { alert } from "ui/dialogs";
-import { NameMapper } from "../name-mapper";
+import { NameMapper } from "../../name-mapper";
 
 @Component({
     selector: "modal-content",
-    templateUrl: "./home/portfolio/dialog-content.component.html"
+    templateUrl: "./home/portfolio/portfolio-input/portfolio-input.component.html"
 })
-export class DialogContent {
+// TODO: Remove human ability to enter date and add functionality of buttons and search bar
+export class PortfolioInput {
     public prompt: string;
     private incorrectDateString = "Date must be in format: DD/MM/YYYY and not in the future";
     // Contains the ids of every field that must be filled out
