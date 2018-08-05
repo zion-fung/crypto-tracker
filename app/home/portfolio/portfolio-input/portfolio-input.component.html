@@ -1,7 +1,12 @@
 <!-- TODO: Add extra functionaliy buttons and search bar -->
-<StackLayout margin="24" horizontalAlignment="center" verticalAlignment="center">
-    <TextField id="name" hint="Name" (textChange)="update($event.object)" secure="false" returnKeyType="done"></TextField>
-    <TextField id="amountOwned" hint="Amount Owned" (textChange)="update($event.object)" keyboardType="number" secure="false" returnKeyType="done"></TextField>
+<StackLayout horizontalAlignment="center" verticalAlignment="center">
+    <SearchBar hint="Enter a coin..." textFieldBackgroundColor="white" (loaded)="clearFocus($event.object)"></SearchBar>
+    <Label [text]="name" style="text-align: center"></Label>
+    <GridLayout rows="auto" columns="*, 3*, *">
+        <Button row="0" col="0" text="&#xea0b;" class="iconButtons"></Button>
+        <TextField row="0" col="1" id="amountOwned" hint="Amount Owned" (textChange)="update($event.object)" keyboardType="number" secure="false" returnKeyType="done"></TextField>
+        <Button row="0" col="2" text="&#xea0a;" class="iconButtons"></Button>
+    </GridLayout>
     <TextField id="purchasedPrice" hint="Purchased Price" (textChange)="update($event.object)" keyboardType="number" secure="false" returnKeyType="done"></TextField>
     <TextField id="datePurchased" hint="Date Purchased" [text]="results['datePurchased']" (textChange)="update($event.object)" keyboardType="datetime" secure="false" returnKeyType="done"></TextField>
     <Button (tap)="showDateTimePicker()" text="Select Date"></Button>

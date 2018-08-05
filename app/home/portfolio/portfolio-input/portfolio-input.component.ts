@@ -4,24 +4,25 @@ import { TextField } from "ui/text-field";
 import { ModalDatetimepicker, PickerOptions, PickerResponse } from "nativescript-modal-datetimepicker";
 import { alert } from "ui/dialogs";
 import { NameMapper } from "../../name-mapper";
+import { isAndroid } from "ui/page";
 
 @Component({
     selector: "modal-content",
-    templateUrl: "./home/portfolio/portfolio-input/portfolio-input.component.html"
+    templateUrl: "./home/portfolio/portfolio-input/portfolio-input.component.html",
+    styleUrls: ['./home/portfolio/portfolio-input/portfolio-input.component.scss']
 })
 // TODO: Remove human ability to enter date and add functionality of buttons and search bar
 export class PortfolioInput {
-    public prompt: string;
     private incorrectDateString = "Date must be in format: DD/MM/YYYY and not in the future";
     // Contains the ids of every field that must be filled out
     private ids = ["name", "amountOwned", "purchasedPrice", "datePurchased"];
     // Contains the results of the dialog and their default values
     results = {};
     constructor(private params: ModalDialogParams, private picker: ModalDatetimepicker) {
-        this.prompt = params.context.promptMsg;
+        
     }
     amountOwned: number;
-
+    name:string = "Bitcoin";
     /* @param obj : The textfield object containing the text and id
     *
     * */
@@ -109,5 +110,10 @@ export class PortfolioInput {
             return true;
         }
         return false;
+    }
+    clearFocus(search) {
+        if(isAndroid) {
+            search.android.clearFocus();
+        }
     }
 }

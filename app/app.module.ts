@@ -4,7 +4,7 @@ import { ModalDialogService } from "nativescript-angular/modal-dialog";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { DialogContent } from "./home/portfolio/dialog-content.component";
+import { PortfolioInput } from "./home/portfolio/portfolio-input/portfolio-input.component";
 import { ModalDatetimepicker } from "nativescript-modal-datetimepicker";
 import { CoinInfo } from "./home/coin-info/coin-info.component";
 
@@ -18,11 +18,11 @@ import { CoinInfo } from "./home/coin-info/coin-info.component";
     ],
     declarations: [
         AppComponent,
-        DialogContent,
+        PortfolioInput,
         CoinInfo
     ],
     entryComponents: [
-        DialogContent,
+        PortfolioInput,
         CoinInfo
     ],
     schemas: [
