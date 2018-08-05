@@ -21,8 +21,12 @@ export class PortfolioInput {
     constructor(private params: ModalDialogParams, private picker: ModalDatetimepicker) {
         
     }
-    amountOwned: number;
-    name:string = "Bitcoin";
+    ngOnInit() {
+        let today = new Date();
+        this.results["datePurchased"] = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear();    
+        this.results["amountOwned"] = 0;
+        this.results["name"] = "Bitcoin";
+    }
     /* @param obj : The textfield object containing the text and id
     *
     * */
@@ -32,7 +36,15 @@ export class PortfolioInput {
             this.results[obj.id] = text;
         }
     }
-    // Returns the reuslts of the dialog
+    increaseAmountOwned() {
+        this.results["amountOwned"]++;
+    }
+    decreaseAmountOwned() {
+        if(this.results["amountOwned"] > 0) {
+            this.results["amountOwned"]--;
+        }
+    }
+    // Returns the results of the dialog
     public add() {
         if(this.results["datePurchased"] && !this.verifyDate(this.results["datePurchased"])) {
             alert(this.incorrectDateString);

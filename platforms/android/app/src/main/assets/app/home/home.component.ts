@@ -147,6 +147,9 @@ export class HomeComponent implements OnInit {
         this.data = filteredData.slice(0);
         console.log("Data has " + this.data.length + " elements");
     }
+    clearSearch(search: SearchBar) {
+        this.revertData();
+    }
     revertData() {
         console.log("Reverting data");
         this.data = this.dataCopy.slice(0);
