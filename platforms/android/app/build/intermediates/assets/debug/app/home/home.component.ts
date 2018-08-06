@@ -31,8 +31,9 @@ export class HomeComponent implements OnInit {
         "1h": "quotes.USD.percent_change_1h"
 	}
 	headers = [];
-    url = "https://api.coinmarketcap.com/v2/ticker/?structure=array";
+    private url = "https://api.coinmarketcap.com/v2/ticker/?structure=array";
     data = [];
+    private dataCopy = [];
     // Given a url and an array, gets the data from the array and parses it into the array
     // Additionally it takes an optional start number, limit, and different currency
     async getData(url, storage, start?:number, limit?:number, convert?:string) {
@@ -64,45 +65,45 @@ export class HomeComponent implements OnInit {
         }
         // Parses the data and stores it
         let data = json.data;
-        storage.push(this.parseData(data));
+        for (let info of data) {
+            this.data.push(this.parseData(info));
+        }
     }
     private parseData(data: any) {
-        let storage = [];
-        for (let info of data) {
-            let newData = {};
-            for (let key in this.desiredKeys) {
-                let value = jsonlib.nestedJsonFinder(info, this.desiredKeys[key]);
-                let valueNumber = Number(value);
-                // If it is a number add a $ at the beginning and add commas
-                if (isNaN(valueNumber)) {
-                    newData[key] = value;
+        let newData = {};
+        for (let key in this.desiredKeys) {
+            let value = jsonlib.nestedJsonFinder(data, this.desiredKeys[key]);
+            let valueNumber = Number(value);
+            // If it is a number add a $ at the beginning and add commas
+            if (isNaN(valueNumber)) {
+                newData[key] = value;
+            }
+            else {
+                // If value number is a float, reduce it to 2 decimal places
+                // Custom rules here
+                if (key == "volume") {
+                    // Don't show decimal places of volume and add commas
+                    newData[key] = this.addCommas(valueNumber.toFixed(0));
+                }
+                else if (key == "marketcap") {
+                    newData[key] = this.addCommas(valueNumber);
+                }
+                else if (valueNumber % 1 != 0) {
+                    newData[key] = valueNumber.toFixed(2);
                 }
                 else {
-                    // If value number is a float, reduce it to 2 decimal places
-                    // Custom rules here
-                    if (key == "volume") {
-                        // Don't show decimal places of volume and add commas
-                        newData[key] = this.addCommas(valueNumber.toFixed(0));
-                    }
-                    else if (key == "marketcap") {
-                        newData[key] = this.addCommas(valueNumber);
-                    }
-                    else if (valueNumber % 1 != 0) {
-                        newData[key] = valueNumber.toFixed(2);
-                    }
-                    else {
-                        newData[key] = valueNumber.toFixed(0);
-                    }
-                    // Otherwise store it
+                    newData[key] = valueNumber.toFixed(0);
                 }
+                // Otherwise store it
             }
-            storage.push(newData);
         }
-        return storage;
+        return newData;
     }
 
-    ngOnInit() {
-        this.getData(this.url, this.data, 1, 30);
+    async ngOnInit() {
+        await this.getData(this.url, this.data, 1, 100);
+        await this.getData(this.url, this.data, 101, 100);
+        this.dataCopy = this.data.slice(0);
         this.headers = jsonlib.getKeys(this.desiredKeys);
         console.log("Hello world!");
     }
@@ -111,8 +112,8 @@ export class HomeComponent implements OnInit {
         return a.rank - b.rank;
     }
     onTap(args) {
-        console.log("Tap!");
-        console.log(args);
+        // console.log("Tap!");
+        // console.log(args);
         let options: ModalDialogOptions = {
             viewContainerRef: this.viewContainerRef,
             context: args
@@ -127,26 +128,30 @@ export class HomeComponent implements OnInit {
     addCommas(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
-    // TODO: create function to sort through results
+    // With all of the results in this.data from the start, no need for requests
     baseURL = "https://api.coinmarketcap.com/v2/ticker/";
-    async filterResults(substring: string) {
-        // Cancel all current requests
-        this.controller.abort();
-        // Find all id's in NameMapper that match substring
-        let matchedIds:number[] = NameMapper.findIds(substring);
-        // Make request for those id's
-        let data = [];
-        this.controller = new AbortController();
-        this.signal = this.controller.signal;
-        for(var id of matchedIds) {
-            let response = await fetch(this.baseURL + id, {signal: this.signal});
-            let json = await response.json();
-            data.push(this.parseData(json.data));
+    filterResults(substring: string) {
+        if(substring == "") {
+            this.revertData();
+            return;
         }
-        // Sort data
-        data.sort(this.rankCompare);
-        // Update existing data array
-        this.data = [];
-        this.data.push(data);
+        substring = substring.toLowerCase();
+        // console.log("Searching for: " + substring);
+        let filteredData = [];
+        // Loop through data and push to new array that have the substring
+        for(var obj of this.dataCopy) {
+            if(obj.name.toLowerCase().indexOf(substring) != -1) {
+                filteredData.push(obj);
+            }
+        }
+        this.data = filteredData.slice(0);
+        console.log("Data has " + this.data.length + " elements");
+    }
+    clearSearch(search: SearchBar) {
+        this.revertData();
+    }
+    revertData() {
+        console.log("Reverting data");
+        this.data = this.dataCopy.slice(0);
     }
 }

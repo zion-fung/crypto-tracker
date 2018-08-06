@@ -6,6 +6,7 @@ import { HomeComponent } from "./home.component";
 import { NativescriptBottomNavigationModule} from "nativescript-bottom-navigation/angular";
 import { PortfolioComponent } from "./portfolio/portfolio.component";
 import { PortfolioBlockComponent } from "./portfolio/portfolio-block/portfolio-block.component";
+import { ChartsComponent } from "./charts/charts.component";
 
 @NgModule({
     imports: [
@@ -16,7 +17,8 @@ import { PortfolioBlockComponent } from "./portfolio/portfolio-block/portfolio-b
     declarations: [
         HomeComponent,
         PortfolioComponent,
-        PortfolioBlockComponent
+        PortfolioBlockComponent,
+        ChartsComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA

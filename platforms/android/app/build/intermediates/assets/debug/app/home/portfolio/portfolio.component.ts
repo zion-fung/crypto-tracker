@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Portfolio } from "./portfolio";
 import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/modal-dialog";
-import { DialogContent } from "./dialog-content.component";
+import { PortfolioInput } from "./portfolio-input/portfolio-input.component";
 import { NameMapper } from "../name-mapper";
 import { jsonlib } from "../jsonlib";
 
@@ -19,20 +19,28 @@ export class PortfolioComponent implements OnInit {
         this.portfolio = new Portfolio();
         this.entries = this.portfolio.getEntries();
     }
-    async newPortfolioEntry() {
+    newPortfolioEntry() {
         let options: ModalDialogOptions = {
             viewContainerRef: this.viewContainerRef
         };
         console.log("Opening dialog");
-        let result = await this.modalService.showModal(DialogContent, options);
-        console.log(result);
-        // User added new entry to portfolio
-        if(JSON.stringify(result) != "{}") {
-            let price = await this.getPrice(result.name);
-            this.portfolio.addEntry(NameMapper.getId(result.name), result.name, price, result.amountOwned, result.purchasedPrice, result.datePurchased);
-        }
-        console.log(this.portfolio);
-        this.entries = this.portfolio.getEntries();
+        this.modalService.showModal(PortfolioInput, options).then(
+            result => {
+                console.log(result);
+                if(!result) {
+                    return;
+                }
+                // User added new entry to portfolio
+                if(JSON.stringify(result) != "{}") {
+                    this.getPrice(result.name).then(price => {
+                        this.portfolio.addEntry(NameMapper.getId(result.name), result.name, price, result.amountOwned, result.purchasedPrice, result.datePurchased);
+                    });
+                }
+                // console.log(this.portfolio);
+                // this.entries = this.portfolio.getEntries();
+            }, error => {
+                console.log("Error on portfolio input response");
+            })
     }
     // Given the name of a coin return its price
     async getPrice(name: string) {

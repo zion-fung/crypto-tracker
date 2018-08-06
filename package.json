@@ -23,6 +23,7 @@
     "nativescript-angular": "~6.0.6",
     "nativescript-bottom-navigation": "^1.3.0",
     "nativescript-modal-datetimepicker": "^1.1.3",
+    "nativescript-sqlite": "^2.2.1",
     "nativescript-theme-core": "~1.0.4",
     "nativescript-ui-listview": "^3.5.9",
     "reflect-metadata": "~0.1.10",

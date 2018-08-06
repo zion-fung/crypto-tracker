@@ -6,7 +6,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { PortfolioInput } from "./home/portfolio/portfolio-input/portfolio-input.component";
 import { ModalDatetimepicker } from "nativescript-modal-datetimepicker";
-import { CoinInfo } from "./home/coin-info/coin-info.component";
+import { CoinInfo } from "./home/charts/coin-info/coin-info.component";
 
 @NgModule({
     bootstrap: [

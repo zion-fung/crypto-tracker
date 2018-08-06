@@ -4,6 +4,7 @@ import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/mod
 import { PortfolioInput } from "./portfolio-input/portfolio-input.component";
 import { NameMapper } from "../name-mapper";
 import { jsonlib } from "../jsonlib";
+var Sqlite = require( "nativescript-sqlite" );
 
 @Component({
     moduleId: module.id,

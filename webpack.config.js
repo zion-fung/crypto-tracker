@@ -208,6 +208,9 @@ module.exports = env => {
                     to: `${dist}/App_Resources/${appResourcesPlatformDir}`,
                     context: projectRoot
                 },
+                {
+                    from: "**/*.sqlite"
+                },
             ]),
             // Copy assets to out dir. Add your own globs as needed.
             new CopyWebpackPlugin([

@@ -3,25 +3,30 @@ import { ModalDialogParams } from "nativescript-angular/modal-dialog";
 import { TextField } from "ui/text-field";
 import { ModalDatetimepicker, PickerOptions, PickerResponse } from "nativescript-modal-datetimepicker";
 import { alert } from "ui/dialogs";
-import { NameMapper } from "../name-mapper";
+import { NameMapper } from "../../name-mapper";
+import { isAndroid } from "ui/page";
 
 @Component({
     selector: "modal-content",
-    templateUrl: "./home/portfolio/dialog-content.component.html"
+    templateUrl: "./home/portfolio/portfolio-input/portfolio-input.component.html",
+    styleUrls: ['./home/portfolio/portfolio-input/portfolio-input.component.scss']
 })
 // TODO: Remove human ability to enter date and add functionality of buttons and search bar
-export class DialogContent {
-    public prompt: string;
+export class PortfolioInput {
     private incorrectDateString = "Date must be in format: DD/MM/YYYY and not in the future";
     // Contains the ids of every field that must be filled out
     private ids = ["name", "amountOwned", "purchasedPrice", "datePurchased"];
     // Contains the results of the dialog and their default values
     results = {};
     constructor(private params: ModalDialogParams, private picker: ModalDatetimepicker) {
-        this.prompt = params.context.promptMsg;
+        
     }
-    amountOwned: number;
-
+    ngOnInit() {
+        let today = new Date();
+        this.results["datePurchased"] = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear();    
+        this.results["amountOwned"] = 0;
+        this.results["name"] = "Bitcoin";
+    }
     /* @param obj : The textfield object containing the text and id
     *
     * */
@@ -31,7 +36,15 @@ export class DialogContent {
             this.results[obj.id] = text;
         }
     }
-    // Returns the reuslts of the dialog
+    increaseAmountOwned() {
+        this.results["amountOwned"]++;
+    }
+    decreaseAmountOwned() {
+        if(this.results["amountOwned"] > 0) {
+            this.results["amountOwned"]--;
+        }
+    }
+    // Returns the results of the dialog
     public add() {
         if(this.results["datePurchased"] && !this.verifyDate(this.results["datePurchased"])) {
             alert(this.incorrectDateString);
@@ -109,5 +122,10 @@ export class DialogContent {
             return true;
         }
         return false;
+    }
+    clearFocus(search) {
+        if(isAndroid) {
+            search.android.clearFocus();
+        }
     }
 }

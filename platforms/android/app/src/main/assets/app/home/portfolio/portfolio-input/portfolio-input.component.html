@@ -10,11 +10,11 @@
         <Button row="3" col="0" text="&#xea0b;" class="iconButtons" (tap)="decreaseAmountOwned()"></Button>
         <TextField row="3" col="1" id="amountOwned" [text]="results['amountOwned']" (textChange)="update($event.object)" keyboardType="number" secure="false" returnKeyType="done" class="h2 text-center" (loaded)="$event.object.android.clearFocus()"></TextField>
         <Button row="3" col="2" text="&#xea0a;" class="iconButtons" (tap)="increaseAmountOwned()"></Button>
-        <Label row="4" col="1" text="Amount" horizontalAlignment="center" verticalAlignment="top" marginTop="-5"></Label>
+        <Label row="4" col="1" text="Amount" horizontalAlignment="center" verticalAlignment="top" marginTop="-10"></Label>
         <!-- Purchased Price -->
         <TextField row="5" col="1" id="purchasedPrice" (textChange)="update($event.object)" keyboardType="number" secure="false" returnKeyType="done" class="h2 text-center"></TextField>
         <Button row="5" col="2" text="&#xea2e;" class="iconButtons"></Button>   
-        <Label row="6" col="1" text="Purchased Price" horizontalAlignment="center" verticalAlignment="top" marginTop="-5"></Label>
+        <Label row="6" col="1" text="Purchased Price" horizontalAlignment="center" verticalAlignment="top" marginTop="-10"></Label>
         <!-- Date Purchased -->
         <Label row="7" col="1" [text]="results['datePurchased']" horizontalAlignment="center" class="h2 text-center" verticalAlignment="bottom" style="border-bottom-style:solid" (tap)="showDateTimePicker()" marginTop="15"></Label>
         <!-- <Button row="7" col="2" (tap)="showDateTimePicker()" text="&#xe953;" class="iconButtons"></Button> -->

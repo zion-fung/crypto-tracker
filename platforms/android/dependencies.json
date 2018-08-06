@@ -12,6 +12,10 @@
         "directory": "..\\..\\node_modules\\nativescript-modal-datetimepicker"
     },
     {
+        "name": "nativescript-sqlite",
+        "directory": "..\\..\\node_modules\\nativescript-sqlite"
+    },
+    {
         "name": "nativescript-theme-core",
         "directory": "..\\..\\node_modules\\nativescript-theme-core"
     },

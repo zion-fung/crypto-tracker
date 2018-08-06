@@ -4,8 +4,7 @@
 
 <TabView selectedIndex="0" androidTabsPosition="bottom" selectedTabTextColor="blue">
     <StackLayout *tabItem="{title: 'Charts'}" orientation="vertical" height="100%" width="100%">
-        <SearchBar hint="Enter a name..."
-            color="white" textFieldBackgroundColor="white" textFieldHintColor="white" (loaded)="clearFocus($event.object)" #searchBar id="searchBar" (textChange)="filterResults($object.text)" (submit)="filterResults($object.text)"></SearchBar>
+        <SearchBar hint="Enter a name..." textFieldBackgroundColor="white" textFieldHintColor="white" (loaded)="clearFocus($event.object)" #searchBar id="searchBar" (textChange)="filterResults($event.object.text)" (submit)="clearFocus($event.object)" (clear)="clearSearch($event.object)"></SearchBar>
             <GridLayout rows="*" columns="2*, 2*, *, *" height="20" width="100%">
                 <label row="0" col="0" text="Name" horizontalAlignment="center" verticalAlignment="center"></label>
                 <label row="0" col="1" text="Price" horizontalAlignment="center" verticalAlignment="center"></label>
