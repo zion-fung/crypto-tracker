@@ -5,6 +5,7 @@ import { ModalDatetimepicker, PickerOptions, PickerResponse } from "nativescript
 import { alert } from "ui/dialogs";
 import { NameMapper } from "../../name-mapper";
 import { isAndroid } from "ui/page";
+var Sqlite = require( "nativescript-sqlite" );
 
 @Component({
     selector: "modal-content",
@@ -18,14 +19,30 @@ export class PortfolioInput {
     private ids = ["name", "amountOwned", "purchasedPrice", "datePurchased"];
     // Contains the results of the dialog and their default values
     results = {};
+    searchResults = [];
+    market = [];
+    private database: any;
     constructor(private params: ModalDialogParams, private picker: ModalDatetimepicker) {
-        
+        (new Sqlite("crypto.db")).then(
+            db => {
+                db.resultType(Sqlite.RESULTSASOBJECTS);
+                this.database = db;
+                this.database.all("SELECT * FROM market").then(
+                    result => {
+                        this.market = result;
+                    }
+                )
+            }, error => {
+                console.log("Error opening database in portfolio input", error);
+            }
+        )
     }
+    currentPrice:number;
     ngOnInit() {
         let today = new Date();
         this.results["datePurchased"] = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear();    
         this.results["amountOwned"] = 0;
-        this.results["name"] = "Bitcoin";
+        this.results["name"] = "";
     }
     /* @param obj : The textfield object containing the text and id
     *
@@ -126,6 +143,35 @@ export class PortfolioInput {
     clearFocus(search) {
         if(isAndroid) {
             search.android.clearFocus();
+        }
+    }
+    filterResults(substring: string) {
+        if(substring == "") {
+            this.clearResults();
+        }
+        substring = substring.toLowerCase();
+        // Look through charts data and find coins that match
+        for(var data of this.market) {
+            let name:string = data.name;
+            if(name.toLowerCase().indexOf(substring) != -1) {
+                this.searchResults.push(data.name);
+            }
+        }
+    }
+    clearResults() {
+        this.searchResults = [];
+    }
+    async resetPrice() {
+        let id = NameMapper.getId(this.results["name"]);
+        console.log("Id is " + id);
+        if(id) {
+            console.log("Searching...");
+            let response = await fetch("https://api.conmarketcap.com/v2/ticker/" + id);
+            let json = await response.json();
+            console.log(json);
+            this.results["purchasedPrice"] = json.data.quotes.USD.price.toFixed(2);
+        } else {
+            alert("Coin does not exist");
         }
     }
 }

@@ -13,9 +13,21 @@ var Sqlite = require( "nativescript-sqlite" );
     styleUrls: ['./portfolio.component.scss']
 })
 export class PortfolioComponent implements OnInit {
+    private database: any;
     portfolio: Portfolio;
     entries;
-    constructor(private modalService: ModalDialogService, private viewContainerRef: ViewContainerRef) {}
+    constructor(private modalService: ModalDialogService, private viewContainerRef: ViewContainerRef) {
+        (new Sqlite("crypto.db")).then(db => {
+            db.resultType(Sqlite.RESULTSASOBJECT);
+            db.execSQL("CREATE TABLE IF NOT EXISTS portfolio(id INTEGER, name TEXT, price REAL, amountOwned REAL, purchasedPrice REAL, datePurchased TEXT)").then(result => {
+                this.database = db;
+            }, error => {
+                console.log("CREATE TABLE ERROR", error);
+            });
+        }, error => {
+            console.log("Open database error", error);
+        });
+    }
 	ngOnInit() {
         this.portfolio = new Portfolio();
         this.entries = this.portfolio.getEntries();
@@ -34,7 +46,8 @@ export class PortfolioComponent implements OnInit {
                 // User added new entry to portfolio
                 if(JSON.stringify(result) != "{}") {
                     this.getPrice(result.name).then(price => {
-                        this.portfolio.addEntry(NameMapper.getId(result.name), result.name, price, result.amountOwned, result.purchasedPrice, result.datePurchased);
+                        // this.portfolio.addEntry(NameMapper.getId(result.name), result.name, price, result.amountOwned, result.purchasedPrice, result.datePurchased);
+                        this.insertData(NameMapper.getId(result.name), result.name, price, result.amountOwned, result.purchasedPrice, result.datePurchased);
                     });
                 }
                 // console.log(this.portfolio);
@@ -48,5 +61,23 @@ export class PortfolioComponent implements OnInit {
         let response = await fetch("https://api.coinmarketcap.com/v2/ticker/" + NameMapper.getId(name));
         let json = await response.json();
         return jsonlib.nestedJsonFinder(json, "data.quotes.USD.price");
+    }
+    insertData(id: number, name: string, price: number, amountOwned: number, purchasedPrice: number, datePurchased: string) {
+        this.database.execSQL("INSERT INTO portfolio (id, name, price, amountOwned, purchasedPrice, datePurchased) values (?, ?, ?, ?, ?, ?)", [id, name, price, amountOwned, purchasedPrice, datePurchased]).then(
+            result => {
+                console.log("Done inserting!");
+            }, error => {
+                console.log("ERROR INSERTING DATA", error);
+            }
+        )
+    }
+    clearData() {
+        this.database.execSQL("DELETE FROM portfolio").then(
+            success => {
+                console.log("Deleted portfolio table");
+            }, error => {
+                console.log("Error deleting table", error);
+            }
+        )
     }
 }

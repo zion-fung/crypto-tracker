@@ -10,6 +10,9 @@
         <portfolio></portfolio>
     </StackLayout>
     <StackLayout *tabItem="{title: 'Misc'}">
-
+        <button text="Print market" (tap)="printMarket()"></button>
+        <button text="Print portfolio" (tap)="printPortfolio()"></button>
+        <button text="Clear market" (tap)="clearMarket()"></button>
+        <button text="Clear portfolio" (tap)="clearPortfolio()"></button>
     </StackLayout>
 </TabView>

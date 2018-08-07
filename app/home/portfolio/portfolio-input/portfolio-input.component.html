@@ -1,6 +1,11 @@
 <!-- TODO: Add extra functionaliy buttons and search bar -->
 <StackLayout horizontalAlignment="center" verticalAlignment="center">
-    <SearchBar hint="Enter a name..." textFieldBackgroundColor="white" (loaded)="clearFocus($event.object)" marginBottom="15"></SearchBar>
+    <SearchBar hint="Enter a name..." textFieldBackgroundColor="white" (loaded)="clearFocus($event.object)" marginBottom="15" (textChange)="filterResults($event.object.text)"></SearchBar>
+    <ListView [items]="searchResults">
+        <StackLayout *ngFor="let result of searchResults">
+            <Label [text]="result"></Label>
+        </StackLayout>
+    </ListView>
     <GridLayout rows="auto, auto, auto, auto, auto, auto, auto, auto, auto" columns="*, 3*, *" marginBottom="10" marginTop="10">
         <!-- Coin Label -->
         <Label *ngIf="results['name']" row="0" col="1" [text]="results['name']" class="h2" horizontalAlignment="center"></Label>
@@ -12,11 +17,11 @@
         <Button row="3" col="2" text="&#xea0a;" class="iconButtons" (tap)="increaseAmountOwned()"></Button>
         <Label row="4" col="1" text="Amount" horizontalAlignment="center" verticalAlignment="top" marginTop="-10"></Label>
         <!-- Purchased Price -->
-        <TextField row="5" col="1" id="purchasedPrice" (textChange)="update($event.object)" keyboardType="number" secure="false" returnKeyType="done" class="h2 text-center"></TextField>
-        <Button row="5" col="2" text="&#xea2e;" class="iconButtons"></Button>   
+        <TextField row="5" col="1" [text]="results['purchasedPrice']" id="purchasedPrice" (textChange)="update($event.object)" keyboardType="number" secure="false" returnKeyType="done" class="h2 text-center"></TextField>
+        <Button row="5" col="2" text="&#xea2e;" class="iconButtons" (tap)="resetPrice()"></Button>   
         <Label row="6" col="1" text="Purchased Price" horizontalAlignment="center" verticalAlignment="top" marginTop="-10"></Label>
         <!-- Date Purchased -->
-        <Label row="7" col="1" [text]="results['datePurchased']" horizontalAlignment="center" class="h2 text-center" verticalAlignment="bottom" style="border-bottom-style:solid" (tap)="showDateTimePicker()" marginTop="15"></Label>
+        <Label row="7" col="1" [text]="results['datePurchased']" horizontalAlignment="center" class="h2 text-center" verticalAlignment="bottom" style="border-bottom-style:solid" (tap)="showDateTimePicker()" textWrap="true" marginTop="15"></Label>
         <!-- <Button row="7" col="2" (tap)="showDateTimePicker()" text="&#xe953;" class="iconButtons"></Button> -->
         <Label row="8" col="1" verticalAlignment="top" height="3px" backgroundColor="gray" marginTop="-4"></Label>
         <Label row="9" col="1" horizontalAlignment="center" verticalAlignment="top" text="Date Purchased" marginTop="-5"></Label>

@@ -20,13 +20,14 @@ export class ChartsComponent implements OnInit {
     signal: AbortSignal;
     constructor(private page: Page, private modalService: ModalDialogService, private viewContainerRef: ViewContainerRef) {
         page.actionBarHidden = true;
-        (new Sqlite("test.db")).then(db => {
+        Sqlite.deleteDatabase("crypto.db");
+        (new Sqlite("crypto.db")).then(db => {
             db.resultType(Sqlite.RESULTSASOBJECT);
-            db.execSQL("CREATE TABLE IF NOT EXISTS market(rank INTEGER, name TEXT)").then(result => {
-                this.database = db;
-                this.database.execSQL("DELETE FROM market").then(result => {
-                    this.printData();
-                });
+            this.database = db;
+            db.execSQL("CREATE TABLE IF NOT EXISTS market(rank INTEGER, name TEXT, symbol TEXT, price REAL, marketcap REAL, volume REAL, twentyFourHour REAL, sevenDay REAL, oneHour REAL)").then(result => {
+                console.log("Market table creation successful");
+                this.database.execSQL("DELETE FROM market");
+                this.printData();
             }, error => {
                 console.log("CREATE TABLE ERROR", error);
             });
@@ -48,7 +49,11 @@ export class ChartsComponent implements OnInit {
 	headers = [];
     private url = "https://api.coinmarketcap.com/v2/ticker/?structure=array";
     data = [];
-    private dataCopy = [];
+    dataCopy = [];
+    static staticData = [];
+    static getDataCopy() {
+        return this.staticData;
+    }
     // Given a url and an array, gets the data from the array and parses it into the array
     // Additionally it takes an optional start number, limit, and different currency
     async getData(url, storage, start?:number, limit?:number, convert?:string) {
@@ -81,7 +86,9 @@ export class ChartsComponent implements OnInit {
         // Parses the data and stores it
         let data = json.data;
         for (let info of data) {
-            this.data.push(this.parseData(info));
+            let parsedData = this.parseData(info);
+            await this.database.execSQL("INSERT INTO market (rank, name, symbol, price, marketcap, volume, twentyFourHour, sevenDay, oneHour) values (?, ?, ?, ?, ?, ?, ?, ?, ?)", [parsedData["rank"], parsedData["name"], parsedData["symbol"], parsedData["price"], parsedData["marketcap"], parsedData["volume"], parsedData["24h"], parsedData["7d"], parsedData["1h"]]);
+            this.data.push(parsedData);
         }
     }
     private parseData(data: any) {
@@ -119,6 +126,7 @@ export class ChartsComponent implements OnInit {
         await this.getData(this.url, this.data, 1, 100);
         await this.getData(this.url, this.data, 101, 100);
         this.dataCopy = this.data.slice(0);
+        ChartsComponent.staticData = this.dataCopy;
         this.headers = jsonlib.getKeys(this.desiredKeys);
         console.log("Hello world!");
     }
