@@ -1,2 +1,2 @@
 # crypto-tracker
-Crypto tracker app using Angular, Typscript, and Nativescript
+Crypto tracker app using Angular, Typescript, and Nativescript
