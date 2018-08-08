@@ -46,7 +46,7 @@ export class PortfolioComponent implements OnInit {
                 // User added new entry to portfolio
                 if(JSON.stringify(result) != "{}") {
                     this.getPrice(result.name).then(price => {
-                        // this.portfolio.addEntry(NameMapper.getId(result.name), result.name, price, result.amountOwned, result.purchasedPrice, result.datePurchased);
+                        this.portfolio.addEntry(NameMapper.getId(result.name), result.name, price, result.amountOwned, result.purchasedPrice, result.datePurchased);
                         this.insertData(NameMapper.getId(result.name), result.name, price, result.amountOwned, result.purchasedPrice, result.datePurchased);
                     });
                 }

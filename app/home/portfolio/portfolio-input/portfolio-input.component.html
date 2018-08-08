@@ -1,12 +1,15 @@
 <!-- TODO: Add extra functionaliy buttons and search bar -->
-<StackLayout horizontalAlignment="center" verticalAlignment="center">
-    <SearchBar hint="Enter a name..." textFieldBackgroundColor="white" (loaded)="clearFocus($event.object)" marginBottom="15" (textChange)="filterResults($event.object.text)"></SearchBar>
-    <ListView [items]="searchResults">
-        <StackLayout *ngFor="let result of searchResults">
-            <Label [text]="result"></Label>
-        </StackLayout>
-    </ListView>
-    <GridLayout rows="auto, auto, auto, auto, auto, auto, auto, auto, auto" columns="*, 3*, *" marginBottom="10" marginTop="10">
+<GridLayout rows="auto, *, auto" columns="*" horizontalAlignment="center" verticalAlignment="center">
+    <SearchBar row="0" col="0" hint="Enter a name..." textFieldBackgroundColor="white" (loaded)="clearFocus($event.object)" marginBottom="15" (textChange)="filterResults($event.object.text)" (submit)="clearFocus($event.object)"></SearchBar>
+    <StackLayout *ngIf="showResults" row="1" col="0" verticalAlignment="stretch">
+            <ListView [items]="searchResults" height="100%" backgroundColor="lightgray">
+                <StackLayout *ngFor="let result of searchResults" width="100%" (tap)="chooseName(result)">
+                    <Label height="30" [text]="result" horizontalAlignment="stretch" verticalAlignment="center" style="font-size: 15px" width="100%"></Label>
+                </StackLayout>
+            </ListView>
+    </StackLayout>
+    <GridLayout row="1" col="0" [opacity]="inputOpacity" rows="auto, auto, auto, auto, auto, auto, auto, auto, auto" columns="*, 3*, *" marginBottom="10" marginTop="10">
+        <!-- Search Results -->
         <!-- Coin Label -->
         <Label *ngIf="results['name']" row="0" col="1" [text]="results['name']" class="h2" horizontalAlignment="center"></Label>
         <Label row="1" col="1" verticalAlignment="top" height="3px" backgroundColor="gray" marginTop="-4"></Label>
@@ -26,10 +29,8 @@
         <Label row="8" col="1" verticalAlignment="top" height="3px" backgroundColor="gray" marginTop="-4"></Label>
         <Label row="9" col="1" horizontalAlignment="center" verticalAlignment="top" text="Date Purchased" marginTop="-5"></Label>
     </GridLayout>
-    <GridLayout rows="auto" columns="auto, *, auto" marginTop="20">
+    <GridLayout row="2" col="0" rows="auto" columns="auto, *, auto" marginTop="20">
         <Button row="0" col="0" text="Cancel" (tap)="close()"></Button>
         <Button row="0" col="2" text="Add" (tap)="add()"></Button>
     </GridLayout>
-    <ScrollView orientation="vertical">
-    </ScrollView>
-</StackLayout>
+</GridLayout>

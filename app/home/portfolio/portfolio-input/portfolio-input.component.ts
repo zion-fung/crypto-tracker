@@ -5,6 +5,7 @@ import { ModalDatetimepicker, PickerOptions, PickerResponse } from "nativescript
 import { alert } from "ui/dialogs";
 import { NameMapper } from "../../name-mapper";
 import { isAndroid } from "ui/page";
+import { SearchBar } from '../../../../node_modules/tns-core-modules/ui/search-bar/search-bar';
 var Sqlite = require( "nativescript-sqlite" );
 
 @Component({
@@ -22,6 +23,8 @@ export class PortfolioInput {
     searchResults = [];
     market = [];
     private database: any;
+    showResults:boolean = false;
+    searchBar: SearchBar;
     constructor(private params: ModalDialogParams, private picker: ModalDatetimepicker) {
         (new Sqlite("crypto.db")).then(
             db => {
@@ -38,6 +41,7 @@ export class PortfolioInput {
         )
     }
     currentPrice:number;
+    inputOpacity = "1";
     ngOnInit() {
         let today = new Date();
         this.results["datePurchased"] = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear();    
@@ -141,6 +145,7 @@ export class PortfolioInput {
         return false;
     }
     clearFocus(search) {
+        this.searchBar = search;
         if(isAndroid) {
             search.android.clearFocus();
         }
@@ -148,8 +153,14 @@ export class PortfolioInput {
     filterResults(substring: string) {
         if(substring == "") {
             this.clearResults();
+            this.inputOpacity = "1";
+            this.showResults = false;
+            return;
         }
+        this.showResults = true;
+        this.inputOpacity = "0";
         substring = substring.toLowerCase();
+        this.searchResults = [];
         // Look through charts data and find coins that match
         for(var data of this.market) {
             let name:string = data.name;
@@ -157,9 +168,11 @@ export class PortfolioInput {
                 this.searchResults.push(data.name);
             }
         }
+        this.searchBar.focus();
     }
     clearResults() {
         this.searchResults = [];
+        this.results["name"] = "";
     }
     async resetPrice() {
         let id = NameMapper.getId(this.results["name"]);
@@ -173,5 +186,12 @@ export class PortfolioInput {
         } else {
             alert("Coin does not exist");
         }
+    }
+    chooseName(name:string):void {
+        this.results["name"] = name;
+        this.searchBar.text = name;
+        this.searchResults = [];
+        this.showResults = false;
+        this.inputOpacity = "1";
     }
 }
