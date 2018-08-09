@@ -7,6 +7,7 @@ import { NameMapper } from "../../name-mapper";
 import { isAndroid } from "ui/page";
 import { SearchBar } from '../../../../node_modules/tns-core-modules/ui/search-bar/search-bar';
 var Sqlite = require( "nativescript-sqlite" );
+import { PortfolioVerify } from "./portfolio-verify";
 
 @Component({
     selector: "modal-content",
@@ -25,6 +26,7 @@ export class PortfolioInput {
     private database: any;
     showResults:boolean = false;
     searchBar: SearchBar;
+    defaultPrice: string;
     constructor(private params: ModalDialogParams, private picker: ModalDatetimepicker) {
         (new Sqlite("crypto.db")).then(
             db => {
@@ -113,20 +115,7 @@ export class PortfolioInput {
     }
     // Given a date string verify if it's valid and has a year of 4 digits
     private verifyDate(dateString: string):boolean {
-        let date = new Date(dateString);
-        // Not a number = not a valid date
-        if(isNaN(Number(date))) {
-            return false;
-        }
-        // Check if date is in the future
-        let currentDate = new Date();
-        let a = Number(date);
-        let b = Number(currentDate);
-        // Date is in the future
-        if(a > b) {
-            return false;
-        }
-        return true;
+        return PortfolioVerify.verifyDate(dateString);
     }
     // Verifies that every field is filled out
     private verifyFields():boolean {
@@ -174,24 +163,28 @@ export class PortfolioInput {
         this.searchResults = [];
         this.results["name"] = "";
     }
-    async resetPrice() {
-        let id = NameMapper.getId(this.results["name"]);
-        console.log("Id is " + id);
-        if(id) {
-            console.log("Searching...");
-            let response = await fetch("https://api.conmarketcap.com/v2/ticker/" + id);
-            let json = await response.json();
-            console.log(json);
-            this.results["purchasedPrice"] = json.data.quotes.USD.price.toFixed(2);
-        } else {
-            alert("Coin does not exist");
-        }
+    resetPrice() {
+        this.results["purchasedPrice"] = this.defaultPrice;
     }
     chooseName(name:string):void {
+        // Set name label
         this.results["name"] = name;
+        // Set search bar text to name
         this.searchBar.text = name;
+        // Clear results
         this.searchResults = [];
+        // Hide results element and show input fields
         this.showResults = false;
         this.inputOpacity = "1";
+        // Get price and set it to the text field and default price
+        name = name.toLowerCase();
+        for(var coin of this.market) {
+            // Found matching object
+            if(coin["name"].toLowerCase() == name) {
+                this.defaultPrice = coin["price"].toFixed(2);
+                this.results["purchasedPrice"] = this.defaultPrice;
+                break;
+            }
+        }
     }
 }

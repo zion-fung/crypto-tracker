@@ -7,6 +7,7 @@ import { NativescriptBottomNavigationModule} from "nativescript-bottom-navigatio
 import { PortfolioComponent } from "./portfolio/portfolio.component";
 import { PortfolioBlockComponent } from "./portfolio/portfolio-block/portfolio-block.component";
 import { ChartsComponent } from "./charts/charts.component";
+import { FloatFormatter } from "./float-formatter.pipe";
 
 @NgModule({
     imports: [
@@ -18,7 +19,8 @@ import { ChartsComponent } from "./charts/charts.component";
         HomeComponent,
         PortfolioComponent,
         PortfolioBlockComponent,
-        ChartsComponent
+        ChartsComponent,
+        FloatFormatter
     ],
     schemas: [
         NO_ERRORS_SCHEMA

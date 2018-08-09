@@ -1,10 +1,6 @@
-<StackLayout orientation="horizontal">
-    <StackLayout orientation="vertical" width="50%";>
-        <Label [text]="name" textWrap="true" style="text-align: center" verticalAlignment="center"></Label>
-    </StackLayout>
-    <StackLayout orientation="vertical" width="50%">
-        <Label [text]="amountOwned" textWrap="true" style="text-align: center" verticalAlignment="center"></Label>
-        <Label [text]="price" textWrap="true" style="text-align: center" verticalAlignment="center"></Label>
-        <Label [text]="datePurchased" textWrap="true" style="text-align: center" verticalAlignment="center"></Label>
-    </StackLayout>
-</StackLayout>
+<GridLayout rows="auto" columns="*, *, *, *" paddingTop="20" paddingBottom="20">
+    <Label row="0" col="0" [text]="name" textWrap="true" style="text-align: center" verticalAlignment="center"></Label>
+    <Label row="0" col="1" [text]="amountOwned" textWrap="true" style="text-align: center" verticalAlignment="center"></Label>
+    <Label row="0" col="2" [text]="price" textWrap="true" style="text-align: center" verticalAlignment="center"></Label>
+    <Label row="0" col="3" [text]="datePurchased" textWrap="true" style="text-align: center" verticalAlignment="center"></Label>
+</GridLayout>

@@ -16,11 +16,15 @@ export class PortfolioComponent implements OnInit {
     private database: any;
     portfolio: Portfolio;
     entries;
+    totalValue:number = 0;
+    totalSpent:number = 0;
+    numCoins:number = 0;
     constructor(private modalService: ModalDialogService, private viewContainerRef: ViewContainerRef) {
         (new Sqlite("crypto.db")).then(db => {
             db.resultType(Sqlite.RESULTSASOBJECT);
             db.execSQL("CREATE TABLE IF NOT EXISTS portfolio(id INTEGER, name TEXT, price REAL, amountOwned REAL, purchasedPrice REAL, datePurchased TEXT)").then(result => {
                 this.database = db;
+                console.log("Portfolio table creation successful");
             }, error => {
                 console.log("CREATE TABLE ERROR", error);
             });
@@ -46,8 +50,11 @@ export class PortfolioComponent implements OnInit {
                 // User added new entry to portfolio
                 if(JSON.stringify(result) != "{}") {
                     this.getPrice(result.name).then(price => {
-                        this.portfolio.addEntry(NameMapper.getId(result.name), result.name, price, result.amountOwned, result.purchasedPrice, result.datePurchased);
+                        this.portfolio.addEntry(NameMapper.getId(result.name), result.name, this.transform(price), result.amountOwned, result.purchasedPrice, result.datePurchased);
                         this.insertData(NameMapper.getId(result.name), result.name, price, result.amountOwned, result.purchasedPrice, result.datePurchased);
+                        this.numCoins++;
+                        this.totalSpent += Number(result.purchasedPrice);
+                        this.totalValue += price;
                     });
                 }
                 // console.log(this.portfolio);
@@ -66,6 +73,13 @@ export class PortfolioComponent implements OnInit {
         this.database.execSQL("INSERT INTO portfolio (id, name, price, amountOwned, purchasedPrice, datePurchased) values (?, ?, ?, ?, ?, ?)", [id, name, price, amountOwned, purchasedPrice, datePurchased]).then(
             result => {
                 console.log("Done inserting!");
+                this.database.all("SELECT * FROM portfolio").then(
+                    table => {
+                        console.log("Portfolio table:", table);
+                    }, err => {
+                        console.log("Error printing table: ", err);
+                    }
+                )
             }, error => {
                 console.log("ERROR INSERTING DATA", error);
             }
@@ -79,5 +93,31 @@ export class PortfolioComponent implements OnInit {
                 console.log("Error deleting table", error);
             }
         )
+    }
+    transform(value: any):string {
+        let number:number;
+        let str:string;
+        if(isNaN(value)) {
+            str = value;
+            number = Number(value);
+        } else {
+            number = value;
+            str = value.toLocaleString();
+        }
+        // If number is not a float, return it
+        if(str.indexOf(".") == -1) {
+            return value;
+        }
+        // If the number is greater than 1 truncate to 2 decimal places
+        if(number > 1) {
+            return number.toFixed(2);
+        } else { // If the number is less than 1 truncate to 3 decimal places
+            return number.toFixed(3);
+        }
+        
+    }
+    ngOnDestroy() {
+        Sqlite.copyDatabase("crypto.db");
+        console.log("Copying Database!"); 
     }
 }

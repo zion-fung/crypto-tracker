@@ -32,8 +32,10 @@ export class HomeComponent implements OnInit {
     }
     printPortfolio() {
         this.database.all("SELECT * FROM portfolio").then(
-            result => {
-                console.log(result);
+            table => {
+                console.log("Portfolio table:", table);
+            }, err => {
+                console.log("Error printing table: ", err);
             }
         )
     }

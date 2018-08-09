@@ -109,11 +109,13 @@ export class ChartsComponent implements OnInit {
                 }
                 else if (key == "marketcap") {
                     newData[key] = this.addCommas(valueNumber);
-                }
-                else if (valueNumber % 1 != 0) {
-                    newData[key] = valueNumber.toFixed(2);
-                }
-                else {
+                } else if (valueNumber % 1 != 0) { // number is a float
+                    if(valueNumber > .20 || valueNumber < 0) {
+                        newData[key] = valueNumber.toFixed(2);
+                    } else {
+                        newData[key] = valueNumber.toFixed(3);
+                    }
+                } else {
                     newData[key] = valueNumber.toFixed(0);
                 }
                 // Otherwise store it

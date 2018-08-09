@@ -9,14 +9,20 @@
         <button row="0" col="2" text="Show Modal" (tap)="newPortfolioEntry()"></button>
     </GridLayout>
     <StackLayout orientation="horizontal" width="100%" backgroundColor="lightblue">
-        <Label width="33%" style="text-align: center" text="Total value: $2000"></Label>
-        <Label width="33%" style="text-align: center" text="Total spent: $1200"></Label>
-        <Label width="33%" style="text-align: center" text="Coins: 15"></Label>
+        <Label width="33%" style="text-align: center" text="Total value: {{totalValue | floatFormatter}}"></Label>
+        <Label width="33%" style="text-align: center" text="Total spent: {{totalSpent | floatFormatter}}"></Label>
+        <Label width="33%" style="text-align: center" text="Coins: {{numCoins}}"></Label>
     </StackLayout>
+    <GridLayout rows="auto" columns="*, *, *, *">
+        <Label row="0" col="0" text="Name" horizontalAlignment="center"></Label>
+        <Label row="0" col="1" text="Amount" horizontalAlignment="center"></Label>
+        <Label row="0" col="2" text="Price" horizontalAlignment="center"></Label>
+        <Label row="0" col="3" text="Date Purchased" horizontalAlignment="center"></Label>
+    </GridLayout>
     <ScrollView orientation="vertical" height="100%">
         <ListView [items]="entries" height="100%" width="100%" separatorColor="transparent">
             <portfolio-block name="Sample" amountOwned="13" price="$1200" datePurchased="2/2/2012"></portfolio-block>
-            <portfolio-block *ngFor="let entry of entries" [name]="entry?.name" [amountOwned]="entry?.amountOwned" [price]="entry?.price" [datePurchased]="entry?.datePurchased"></portfolio-block>
+            <portfolio-block *ngFor="let entry of entries" [name]="entry?.name" [amountOwned]="entry?.amountOwned" [price]="entry?.price" [datePurchased]="entry?.datePurchased" backgroundColor="lightgray"></portfolio-block>
         </ListView>
     </ScrollView>
 </StackLayout>
