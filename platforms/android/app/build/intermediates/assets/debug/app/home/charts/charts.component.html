@@ -1,0 +1,24 @@
+<StackLayout>
+    <SearchBar hint="Enter a name..." textFieldBackgroundColor="white" textFieldHintColor="white" (loaded)="clearFocus($event.object)" #searchBar id="searchBar" (textChange)="filterResults($event.object.text)" (submit)="clearFocus($event.object)" (clear)="clearSearch($event.object)"></SearchBar>
+    <GridLayout rows="*" columns="2*, 2*, *, *" height="20" width="100%">
+        <label row="0" col="0" text="Name" horizontalAlignment="center" verticalAlignment="center"></label>
+        <label row="0" col="1" text="Price" horizontalAlignment="center" verticalAlignment="center"></label>
+        <label row="0" col="2" text="24h" horizontalAlignment="center" verticalAlignment="center"></label>
+        <label row="0" col="3" text="7d" horizontalAlignment="center" verticalAlignment="center"></label>
+    </GridLayout>
+    <!-- <StackLayout orientation="vertical">
+        <button (tap)="insertData()" text="Insert data"></button>
+        <button (tap)="printData()" text="Print data"></button>
+    </StackLayout> -->
+    <ScrollView orientation="vertical">
+        <ListView [items]="data" height="100%" width="100%" separatorColor="transparent">
+            <GridLayout rows="60" columns="2*, 2*, *, *" *ngFor="let d of data" width="100%" style="border-width: 5 0 5 0;border-color: white;background-color:lightgray"
+              (tap)="onTap(d)">
+                <label row="0" col="0" [text]="d['name']" style="text-align:center" verticalAlignment="center" textWrap="true"></label>
+                <label row="0" col="1" [text]="d['price']" style="text-align:center" verticalAlignment="center" textWrap="true"></label>
+                <label row="0" col="2" [text]="d['24h']" style="text-align:center" verticalAlignment="center" textWrap="true"></label>
+                <label row="0" col="3" [text]="d['7d']" style="text-align:center" verticalAlignment="center" textWrap="true"></label>
+            </GridLayout>
+        </ListView>
+    </ScrollView>
+</StackLayout>

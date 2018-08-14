@@ -1,0 +1,14 @@
+<!-- TODO: Add charts and button to add to portfolio -->
+<StackLayout orientation="vertical" [width]="modalWidth">
+    <GridLayout height="30%" rows="auto, auto, auto, auto" columns="*, auto, *" style="padding:60px">
+        <Label row="0" col="0" text="Marketcap"  style="text-align: left"></Label>
+        <Label row="1" col="0" [text]="data.marketcap"  style="text-align: left"></Label>
+        <Label row="2" col="0" text="Volume"  style="text-align: left"></Label>
+        <Label row="0" col="1" [text]="data.name" style="text-align: center"></Label>
+        <Label row="0" col="2" text="1 h : {{data['1h']}}" style="text-align: right"></Label>
+        <Label row="3" col="0" [text]="data.volume" style="text-align: left"></Label>
+        <Label row="1" col="1" [text]="data.price" style="text-align: center"></Label>
+        <Label row="1" col="2" text="24 h : {{data['24h']}}" style="text-align: right"></Label>
+        <Label row="2" col="2" text="7 d : {{data['7d']}}" style="text-align: right"></Label>
+    </GridLayout>
+</StackLayout>

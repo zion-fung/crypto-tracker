@@ -3,9 +3,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({name: "floatFormatter"})
 export class FloatFormatter implements PipeTransform {
     transform(value: any):string {
-        if(!value) {
-            return undefined;
-        }
         let number:number;
         let str:string;
         if(isNaN(value)) {

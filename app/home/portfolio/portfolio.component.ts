@@ -19,6 +19,8 @@ export class PortfolioComponent implements OnInit {
     totalValue:number = 0;
     totalSpent:number = 0;
     numCoins:number = 0;
+    percentChange24h:number;
+    percentChange7d:number;
     constructor(private modalService: ModalDialogService, private viewContainerRef: ViewContainerRef) {
         (new Sqlite("crypto.db")).then(db => {
             db.resultType(Sqlite.RESULTSASOBJECT);
@@ -50,11 +52,19 @@ export class PortfolioComponent implements OnInit {
                 // User added new entry to portfolio
                 if(JSON.stringify(result) != "{}") {
                     this.getPrice(result.name).then(price => {
-                        this.portfolio.addEntry(NameMapper.getId(result.name), result.name, this.transform(price), result.amountOwned, result.purchasedPrice, result.datePurchased);
+                        this.portfolio.addEntry(NameMapper.getId(result.name), result.name, this.transform(price), result.amountOwned, result.purchasedPrice, result.datePurchased, result.percentChange);
                         this.insertData(NameMapper.getId(result.name), result.name, price, result.amountOwned, result.purchasedPrice, result.datePurchased);
                         this.numCoins++;
-                        this.totalSpent += Number(result.purchasedPrice);
-                        this.totalValue += price;
+                        // this.totalSpent += Number(result.purchasedPrice) * result.amountOwned;
+                        this.totalSpent = this.portfolio.getTotalCost();
+                        // this.totalValue += price * result.amountOwned;
+                        this.totalValue = this.portfolio.getTotalWorth();
+                        let totalPercentChange = this.portfolio.getTotalPercentChange();
+                        // console.log("totalPercentChange", totalPercentChange);
+                        this.percentChange24h = (totalPercentChange["24h"] * 100);
+                        this.percentChange7d = (totalPercentChange["7d"] * 100);
+                    }, error => {
+                        
                     });
                 }
                 // console.log(this.portfolio);
@@ -119,5 +129,8 @@ export class PortfolioComponent implements OnInit {
     ngOnDestroy() {
         Sqlite.copyDatabase("crypto.db");
         console.log("Copying Database!"); 
+    }
+    private portfolioPercentChange() {
+
     }
 }

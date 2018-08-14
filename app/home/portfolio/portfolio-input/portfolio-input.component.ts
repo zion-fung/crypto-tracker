@@ -81,6 +81,8 @@ export class PortfolioInput {
             alert("Coin does not exist");
             return;
         }
+        // Add percent change for 24h and 7d. ASSUMING THAT THE COIN EXISTS BECAUSE IT PASSES THE OTHER CHECK
+        this.results["percentChange"] = this.getCoinPercentChange(this.results["name"]);
         this.params.closeCallback(this.results);
     }
     // Returns an empty object since the dialog was canceled
@@ -186,5 +188,24 @@ export class PortfolioInput {
                 break;
             }
         }
+    }
+    private getCoinPercentChange(name: string):Object {
+        let percentChange = {
+            "24h": undefined,
+            "7d": undefined,
+            "1h": undefined
+        }
+        name = name.toLowerCase();
+        // Look through market for coin
+        for(var coin of this.market) {
+            // If coin name matches return object with its percent changes
+            if(coin["name"].toLowerCase() == name) {
+                percentChange["24h"] = coin["twentyFourHour"];
+                percentChange["7d"] = coin["sevenDay"];
+                percentChange["1h"] = coin["oneHour"];
+                return percentChange; 
+            }
+        }
+        return percentChange;
     }
 }
