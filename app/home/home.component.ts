@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from "@angular/core";
 import { Page } from "ui/page";
+import { GlobalSettings } from "./global_settings";
 var Sqlite = require( "nativescript-sqlite" );
 
 @Component({
@@ -56,5 +57,8 @@ export class HomeComponent implements OnInit {
                 console.log("Error clearing portfolio", error);
             }
         )
+    }
+    printCurrency() {
+        console.log(GlobalSettings.getCurrency());
     }
 }

@@ -7,14 +7,19 @@ import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/mod
 import { NameMapper } from "../name-mapper";
 import 'abortcontroller-polyfill/dist/polyfill-patch-fetch';
 var Sqlite = require( "nativescript-sqlite" );
+import { action } from "ui/dialogs";
+import { desiredKeys, GlobalSettings } from "../global_settings";
 
 @Component({
     selector: "charts",
     moduleId: module.id,
-    templateUrl: "./charts.component.html"
+    templateUrl: "./charts.component.html",
+    styleUrls: ["./charts.component.scss"]
 })
 // TODO: Add dropdowns to change exchange and maybe pick favorites?
 export class ChartsComponent implements OnInit {
+    currency: string = "USD";
+    exchange: string = "CoinMarketCap";
     private database: any;
     controller: AbortController;
     signal: AbortSignal;
@@ -35,17 +40,7 @@ export class ChartsComponent implements OnInit {
             console.log("Open database error", error);
         });
     }
-	desiredKeys = {
-		"rank": "rank",
-		"name": "name",
-        "symbol": "symbol",
-		"price": "quotes.USD.price",
-        "marketcap": "quotes.USD.market_cap",
-        "volume": "quotes.USD.volume_24h",
-        "24h": "quotes.USD.percent_change_24h",
-        "7d": "quotes.USD.percent_change_7d",
-        "1h": "quotes.USD.percent_change_1h"
-	}
+	desiredKeys = {};
 	headers = [];
     private url = "https://api.coinmarketcap.com/v2/ticker/?structure=array";
     data = [];
@@ -67,8 +62,8 @@ export class ChartsComponent implements OnInit {
             url += "&convert=" + convert;
             // Switch from default currency in desiredKeys
             let re = /USD/gi;
-            for(let key in this.desiredKeys) {
-                this.desiredKeys[key] = this.desiredKeys[key].replace(re, convert);
+            for(let key in desiredKeys) {
+                desiredKeys[key] = desiredKeys[key].replace(re, convert);
             }
         }
         console.log(url);
@@ -93,8 +88,8 @@ export class ChartsComponent implements OnInit {
     }
     private parseData(data: any) {
         let newData = {};
-        for (let key in this.desiredKeys) {
-            let value = jsonlib.nestedJsonFinder(data, this.desiredKeys[key]);
+        for (let key in desiredKeys) {
+            let value = jsonlib.nestedJsonFinder(data, desiredKeys[key]);
             let valueNumber = Number(value);
             // If it is a number add a $ at the beginning and add commas
             if (isNaN(valueNumber)) {
@@ -125,11 +120,11 @@ export class ChartsComponent implements OnInit {
     }
 
     async ngOnInit() {
-        await this.getData(this.url, this.data, 1, 100);
-        await this.getData(this.url, this.data, 101, 100);
+        await this.getData(this.url, this.data, 1, 100, GlobalSettings.getCurrency());
+        await this.getData(this.url, this.data, 101, 100, GlobalSettings.getCurrency());
         this.dataCopy = this.data.slice(0);
         ChartsComponent.staticData = this.dataCopy;
-        this.headers = jsonlib.getKeys(this.desiredKeys);
+        this.headers = jsonlib.getKeys(desiredKeys);
         console.log("Hello world!");
     }
     // Given two json objects, returns a comparison of their rank value
@@ -203,6 +198,51 @@ export class ChartsComponent implements OnInit {
             }, error => {
                 console.log("Error fetching data", error);
             } 
+        )
+    }
+    async changeCurrency() {
+        let options = {
+            title: "Choose a currency",
+            cancelButtonText: "Cancel",
+            actions: ["AUD", "BRL", "CAD", "CHF", "CLP", "CNY", "CZK", "DKK", "EUR", "GBP", "HKD", "HUF", "IDR", "ILS", "INR", "JPY", "KRW", "MXN", "MYR", "NOK", "NZD", "PHP", "PKR", "PLN", "RUB", "SEK", "SGD", "THB", "TRY", "TWD", "USD", "ZAR", "BTC", "ETH", "XRP", "LTC", "BCH"]
+        };
+        await action(options).then(
+            result => {
+                if(result == "Cancel") {
+                    return null;
+                }
+                this.currency = result;
+                GlobalSettings.setCurrency(result);
+                // Delete the table
+                this.database.execSQL("DELETE FROM market").then(
+                    success => {
+                        
+                    }, error => {
+                        console.log("Error deleting market table from currency selection", error);
+                        return;
+                    }
+                )
+            }, error => {
+                return;
+            }
+        )
+        this.data = [];
+        this.getData(this.url, this.data, 1, 100, GlobalSettings.getCurrency());
+        this.getData(this.url, this.data, 101, 100, GlobalSettings.getCurrency());
+        this.dataCopy = this.data.slice(0);
+    }
+    changeExchange() {
+        let options = {
+            title: "Choose a data source",
+            cancelButtonText: "Cancel",
+            actions: ["CoinMarketCap", "Bittrex", "Binance"]
+        };
+        action(options).then(
+            result => {
+                this.exchange = result;
+            }, error => {
+
+            }
         )
     }
 }

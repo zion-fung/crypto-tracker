@@ -1,5 +1,15 @@
 <StackLayout>
     <SearchBar hint="Enter a name..." textFieldBackgroundColor="white" textFieldHintColor="white" (loaded)="clearFocus($event.object)" #searchBar id="searchBar" (textChange)="filterResults($event.object.text)" (submit)="clearFocus($event.object)" (clear)="clearSearch($event.object)"></SearchBar>
+    <GridLayout rows="auto" columns="*, *">
+        <GridLayout row="0" col="0" rows="*" columns="*, *" style="background-color:darkcyan">
+            <Button row="0" col="0" text="&#xe93b;&#xe93c;&#xe93d;&#xe93e;" class="iconButtons" (tap)="changeCurrency()"></Button>
+            <Label row="0" col="1" [text]="currency" horizontalAlignment="center" verticalAlignment="center"></Label>
+        </GridLayout>
+        <GridLayout row="0" col="1" rows="*" columns="*, *" style="background-color:cyan">
+            <Button row="0" col="0" text="&#xe964;" class="iconButtons" (tap)="changeExchange()"></Button>
+            <Label row="0" col="1" [text]="exchange" horizontalAlignment="center" verticalAlignment="center"></Label>
+        </GridLayout>
+    </GridLayout>
     <GridLayout rows="*" columns="2*, 2*, *, *" height="20" width="100%">
         <label row="0" col="0" text="Name" horizontalAlignment="center" verticalAlignment="center"></label>
         <label row="0" col="1" text="Price" horizontalAlignment="center" verticalAlignment="center"></label>
